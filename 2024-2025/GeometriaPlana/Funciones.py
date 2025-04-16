@@ -1,6 +1,12 @@
 from Clases import *
 import os
 
+# SEGUN EL SISTEMA OPERATIVO
+if os.name == "nt":
+    limpiar = "cls"
+elif os.name == "posix":
+    limpiar = "clear"
+
 # Método para crear un nuevo punto con datos del usuario
 def nuevoPunto():
     x = asegurarValorEntero("Introduce la coordenada x del punto:\n")
@@ -14,13 +20,13 @@ def pedirPuntos(puntos):
         resp = input("Añadir nuevo punto a la lista? y/n:\n").upper()
         
         if resp == "Y":
-            os.system("cls")
+            os.system(limpiar)
             puntos.append(nuevoPunto())
         elif resp == "N":
-            os.system("cls")
+            os.system(limpiar)
             sacarPunto = False
         else:
-            os.system("cls")
+            os.system(limpiar)
             print("Respuesta no reconocida")
             
     return puntos
@@ -39,7 +45,7 @@ def distanciaEntrePuntos(lista):
         res = True
         while res:
             res = input("¿Quieres saber alguna distancia entre puntos?(y/n):\n").upper()
-            os.system("cls")
+            os.system(limpiar)
             if res == "Y":
                 if len(lista) == 2:
                     mensajeDistancia(lista[0],lista[1])
@@ -68,7 +74,7 @@ def nuevoCirculo():
         if not radio <= 0:
             radioExistente = True
         else:
-            os.system("cls")
+            os.system(limpiar)
             print(f"Valor del radio inexistente: {radio}")
     return Circulo(x,y,radio)
 
@@ -79,13 +85,13 @@ def pedirCirculos(circulos):
         resp = input("Añadir nuevo circulo a la lista? y/n:\n").upper()
 
         if resp == "Y":
-            os.system("cls")
+            os.system(limpiar)
             circulos.append(nuevoCirculo())
         elif resp == "N":
-            os.system("cls")
+            os.system(limpiar)
             sacarCirculo = False
         else:
-            os.system("cls")
+            os.system(limpiar)
             print("Respuesta no reconocida")
         
     return circulos
@@ -103,7 +109,7 @@ def distanciaEntreCirculos(lista):
         res = True
         while res:
             res = input("¿Quieres saber alguna distancia entre circulos?(y/n):\n").upper()
-            os.system("cls")
+            os.system(limpiar)
             if res == "Y":
                 if len(lista) == 2:
                     mensajeDistancia(lista[0],lista[1])
@@ -131,7 +137,7 @@ def asegurarValorEnteroLimitado(mensaje, valorMaximo):
                 raise Exception("")
             correcto = True
         except:
-            os.system("cls")
+            os.system(limpiar)
             print("Valor introducido incorrecto")
     return valor
 
@@ -142,7 +148,7 @@ def asegurarValorEntero(mensaje):
             valor = int(input(mensaje))
             correcto = True
         except:
-            os.system("cls")
+            os.system(limpiar)
             print("Valor introducido incorrecto")
     return valor
 
@@ -201,7 +207,7 @@ def quitarPunto(lista):
                 raise Exception("")
             correcto = True
         except:
-            os.system("cls")
+            os.system(limpiar)
             print(f"Valor incorrecto: {punto}")
     lista.pop(punto)
     return lista
@@ -216,7 +222,7 @@ def quitarCirculo(lista):
                 raise Exception("")
             correcto = True
         except:
-            os.system("cls")
+            os.system(limpiar)
             print(f"Valor incorrecto: {circ}")
     lista.pop(circ)
     return lista

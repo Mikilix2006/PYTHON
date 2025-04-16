@@ -13,7 +13,13 @@ BUG
 EN OPCION 4 SI HAY UNA LISTA VACIA Y QUIERES QUITAR OBJETOS DE ELLA SE QUEDA EN BUCLE
 '''
 
-os.system("cls")
+# SEGUN EL SISTEMA OPERATIVO
+if os.name == "nt":
+    limpiar = "cls"
+elif os.name == "posix":
+    limpiar = "clear"
+
+os.system(limpiar)
 
 circulos = []
 puntos = []
@@ -21,7 +27,7 @@ programaActivo = True
 
 while programaActivo:
     eleccionMenu = mostrarMenu()
-    os.system("cls")
+    os.system(limpiar)
     # METER OBJETO EN LISTA
     if eleccionMenu == 1:
         eleccionOpc1 = mostrarOpcion1()
@@ -33,14 +39,14 @@ while programaActivo:
             circulos = pedirCirculos(circulos)
         elif eleccionOpc1 == 3:
             # SALIR AL MENU
-            os.system("cls")
+            os.system(limpiar)
             eleccionOpc1 = 0
             eleccionMenu = 0
     
     # VER LISTAS
     elif eleccionMenu == 2:
         eleccionOpc2 = mostrarOpcion2()
-        os.system("cls")
+        os.system(limpiar)
         if eleccionOpc2 == 1:
             # VER LISTA PUNTOS
             try:
@@ -55,7 +61,7 @@ while programaActivo:
                 print("No hay círculos suficientes en la lista")
         elif eleccionOpc2 == 3:
             # SALIR AL MENU
-            os.system("cls")
+            os.system(limpiar)
             eleccionOpc2 = 0
             eleccionMenu = 0
         
@@ -65,27 +71,27 @@ while programaActivo:
         if eleccionOpc3 == 1:
             # DISTANCIA ENTRE PUNTOS
             try:
-                os.system("cls")
+                os.system(limpiar)
                 distanciaEntrePuntos(puntos)
             except:
                 print("No hay puntos suficientes en la lista")
         elif eleccionOpc3 == 2:
             # DISTANCIA ENTRE CIRCULOS
             try:
-                os.system("cls")
+                os.system(limpiar)
                 distanciaEntreCirculos(circulos)
             except:
                 print("No hay círculos suficientes en la lista")
         elif eleccionOpc3 == 3:
             # DISTANCIA ENTRE CIRCULO Y PUNTO
             try:
-                os.system("cls")
+                os.system(limpiar)
                 distanciaCirculoPunto(puntos,circulos)
             except:
                 print("No hay puntos o círculos suficientes en las listas")
         elif eleccionOpc3 == 4:
             # SALIR AL MENU
-            os.system("cls")
+            os.system(limpiar)
             eleccionOpc3 = 0
             eleccionMenu = 0
         
@@ -93,16 +99,22 @@ while programaActivo:
     elif eleccionMenu == 4:
         eleccionOpc4 = mostrarOpcion4()
         if eleccionOpc4 == 1:
-            # QUITAR PUNTOS
-            os.system("cls")
-            puntos = quitarPunto(puntos)
+            if len(puntos) > 0:
+                # QUITAR PUNTOS
+                os.system(limpiar)
+                puntos = quitarPunto(puntos)
+            else:
+                print ("No hay suficientes puntos")
         elif eleccionOpc4 == 2:
-            # QUITAR CÍRCULOS
-            os.system("cls")
-            circulos = quitarCirculo(circulos)
+            if len(circulos) > 0:
+                # QUITAR CÍRCULOS
+                os.system(limpiar)
+                circulos = quitarCirculo(circulos)
+            else:
+                print ("No hay suficientes circulos")
         elif eleccionOpc4 == 3:
             # SALIR AL MENU
-            os.system("cls")
+            os.system(limpiar)
             eleccionOpc4 = 0
             eleccionMenu = 0
     
